@@ -23,7 +23,8 @@
                             <div class="form-group">
                                 <label class="font-weight-bold">GAMBAR</label>
                                 <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                    name="image">
+                                    name="image"
+                                    style="width: 200px; height: 200px; object-fit: cover; object-position: center;">
 
                                 <!-- error message untuk title -->
                                 @error('image')
@@ -32,6 +33,7 @@
                                     </div>
                                 @enderror
                             </div>
+
 
                             <div class="form-group">
                                 <label class="font-weight-bold">JUDUL</label>

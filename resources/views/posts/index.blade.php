@@ -37,7 +37,8 @@
                                     <tr>
                                         <td class="text-center">
                                             <img src="{{ asset('/storage/posts/' . $post->image) }}" class="rounded"
-                                                style="width: 150px" alt="{{ $post->title }}">
+                                                style="width: 150px; height: 150px; object-fit: cover; object-position: center;"
+                                                alt="{{ $post->title }}">
                                         </td>
 
                                         <td>{{ $post->title }}</td>

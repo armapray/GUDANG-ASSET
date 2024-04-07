@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //import Model "Post
 use App\Models\Post;
 
+
 use Illuminate\Http\Request;
 
 //return type View
@@ -150,4 +151,27 @@ class PostController extends Controller
         //redirect to index
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
+
+
+    /**
+     * destroy
+     *
+     * @param  mixed $post
+     * @return void
+     */
+    public function destroy($id): RedirectResponse
+    {
+        //get post by ID
+        $post = Post::findOrFail($id);
+
+        //delete image
+        Storage::delete('public/posts/' . $post->image);
+
+        //delete post
+        $post->delete();
+
+        //redirect to index
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
 }
+
