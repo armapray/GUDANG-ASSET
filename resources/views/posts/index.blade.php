@@ -27,8 +27,12 @@
                             <thead>
                                 <tr>
                                     <th scope="col">GAMBAR</th>
-                                    <th scope="col">JUDUL</th>
-                                    <th scope="col">CONTENT</th>
+                                    <th scope="col">NO ASSET</th>
+                                    <th scope="col">NAMA ASSET</th>
+                                    <th scope="col">JENIS ASSET</th>
+                                    <th scope="col">TANGGAL MASUK</th>
+                                    <th scope="col">TANGGAL KELUAR</th>
+                                    <th scope="col">CATATAN</th>
                                     <th scope="col">AKSI</th>
                                 </tr>
                             </thead>
@@ -37,11 +41,15 @@
                                     <tr>
                                         <td class="text-center">
                                             <img src="{{ asset('/storage/posts/' . $post->image) }}" class="rounded"
-                                                style="width: 150px; height: 150px; object-fit: cover; object-position: center;"
+                                                style="width: 100px; height: 100px; object-fit:
+                                                cover; object-position: center;"
                                                 alt="{{ $post->title }}">
                                         </td>
-
+                                        <td>{{ $post->asset_number }}</td>
                                         <td>{{ $post->title }}</td>
+                                        <td>{{ $post->item_type }}</td>
+                                        <td>{{ $post->entry_date }}</td>
+                                        <td>{{ $post->exit_date }}</td>
                                         <td>{!! $post->content !!}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"

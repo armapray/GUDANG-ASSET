@@ -17,8 +17,12 @@ use Illuminate\Http\RedirectResponse;
 //import Facade "Storage"
 use Illuminate\Support\Facades\Storage;
 
+
 class PostController extends Controller
 {
+
+    // Mendefinisikan konstanta
+    const DATE_RULE = 'nullable|date';
     /**
      * index
      *
@@ -53,8 +57,11 @@ class PostController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'title' => 'required|min:5',
+            'image' => 'image|mimes:jpeg,jpg,png|max:2048',
+            'asset_number' => 'required|min:8',
+            'title' => 'required|min:2',
+            'entry_date' => self::DATE_RULE, // Validasi tanggal masuk (opsional)
+            'exit_date' => self::DATE_RULE,  // Validasi tanggal keluar (opsional)
             'content' => 'required|min:10'
         ]);
 
@@ -65,7 +72,11 @@ class PostController extends Controller
         //create post
         Post::create([
             'image' => $image->hashName(),
+            'asset_number' => $request->asset_number,
             'title' => $request->title,
+            'item_type' => $request->item_type,
+            'entry_date' => $request->entry_date,
+            'exit_date' => $request->exit_date,
             'content' => $request->content
         ]);
 
@@ -115,9 +126,13 @@ class PostController extends Controller
         //validate form
         $this->validate($request, [
             'image' => 'image|mimes:jpeg,jpg,png|max:2048',
-            'title' => 'required|min:5',
+            'asset_number' => 'required|min:8',
+            'title' => 'required|min:2',
+            'entry_date' => self::DATE_RULE, // Validasi tanggal masuk (opsional)
+            'exit_date' => self::DATE_RULE,  // Validasi tanggal keluar (opsional)
             'content' => 'required|min:10'
         ]);
+
 
         //get post by ID
         $post = Post::findOrFail($id);
@@ -135,15 +150,24 @@ class PostController extends Controller
             //update post with new image
             $post->update([
                 'image' => $image->hashName(),
+                'asset_number' => $request->asset_number,
                 'title' => $request->title,
+                'item_type' => $request->item_type,
+                'entry_date' => $request->entry_date,
+                'exit_date' => $request->exit_date,
                 'content' => $request->content
+
             ]);
 
         } else {
 
             //update post without image
             $post->update([
+                'asset_number' => $request->asset_number,
                 'title' => $request->title,
+                'item_type' => $request->item_type,
+                'entry_date' => $request->entry_date,
+                'exit_date' => $request->exit_date,
                 'content' => $request->content
             ]);
         }

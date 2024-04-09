@@ -4,30 +4,32 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+class AddFieldsToPostsTable extends Migration
+{
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('image');
+        Schema::table('posts', function (Blueprint $table) {
             $table->string('asset_number')->nullable();
             $table->string('item_type')->nullable();
-            $table->string('title');
             $table->date('entry_date')->nullable();
             $table->date('exit_date')->nullable();
-            $table->string('content');
-            $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn(['asset_number', 'item_type', 'entry_date', 'exit_date']);
+        });
     }
-};
+}

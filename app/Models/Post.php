@@ -15,7 +15,13 @@ class Post extends Model
      */
     protected $fillable = [
         'image',
+        'asset_number',
+        'item_type',
         'title',
+        'entry_date',
+        'exit_date',
         'content',
+
     ];
+
 }

@@ -23,19 +23,20 @@
                 <form action="{{ route('actionregister') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label><i class="fa fa-envelope"></i> Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Email" required="">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa fa-user"></i> Username</label>
-                        <input type="text" name="name" class="form-control" placeholder="Username" required="">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fa fa-key"></i> Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="Password"
+                        <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email"
                             required="">
                     </div>
-
+                    <div class="form-group">
+                        <label for="name"><i class="fa fa-user"></i> Username</label>
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Username"
+                            required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fa fa-key"></i> Password</label>
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Password" required="">
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i>
                         Register</button>
                     <hr>
