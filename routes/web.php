@@ -6,7 +6,13 @@ use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 // Route resource or CRUD
-Route::resource('/posts', \App\Http\Controllers\PostController::class);
+Route::resource('home', \App\Http\Controllers\HomeController::class);
+
+Route::delete('/home/{post}', 'HomeController@destroy')->name('home.destroy');
+Route::get('/home/{post}', 'HomeController@show')->name('home.show');
+Route::get('/home/{post}', 'HomeController@edit')->name('home.edit');
+
+Route::get('send', [HomeController::class, 'create'])->name('create');
 
 // Route login
 Route::get('/', [LoginController::class, 'login'])->name('login');

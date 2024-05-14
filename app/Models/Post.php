@@ -21,6 +21,7 @@ class Post extends Model
         'entry_date',
         'exit_date',
         'content',
+        'status'
 
     ];
 

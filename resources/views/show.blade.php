@@ -54,7 +54,7 @@
                 </a>
             </li>
             <li>
-                <a class="text-white" href="#">
+                <a class="text-white" href="{{ route('home') }}">
                     <i class="bi bi-box-seam-fill"></i>
                     Asset Inventory
                 </a>
@@ -68,7 +68,6 @@
             <li>
                 <a class="text-white" href="{{ route('logoutaksi') }}">
                     <i class="bi bi-box-arrow-left"></i>
-
                     Logout
                 </a>
             </li>
@@ -80,54 +79,44 @@
         </button>
         <div class="card mt-5">
             <div class="card-body">
-                <h2>ASSET INVENTORY</h2>
+                <h2>DETAIL ASSET INVENTORY</h2>
                 <p>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">PICTURE</th>
-                            <th scope="col">NO ASSET</th>
-                            <th scope="col">ASSET NAME</th>
-                            <th scope="col">ASSET TYPE</th>
-                            <th scope="col">NOTE</th>
-                            <th scope="col">STATUS</th>
-                            <th scope="col">ACTION</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($posts as $post)
-                            <tr>
-                                <td class="text-center">
-                                    <img src="{{ asset('/storage/posts/' . $post->image) }}" class="rounded"
-                                        style="width: 150px">
-                                </td>
-                                <td>{{ $post->asset_number }}</td>
-                                <td>{{ $post->title }}</td>
-                                <td>{{ $post->item_type }}</td>
-                                <td>{!! $post->content !!}</td>
-                                <td>{{ $post->status }}</td>
-                                <td class="text-center">
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                        action="{{ route('home.destroy', $post->id) }}" method="POST">
-                                        <a href="{{ route('home.show', $post->id) }}"
-                                            class="btn btn-sm btn-dark">SHOW</a>
-                                        <a href="{{ route('home.edit', $post->id) }}"
-                                            class="btn btn-sm btn-primary">EDIT</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <div class="alert alert-danger">
-                                Data Post belum Tersedia.
+
+
+                <div class="container mt-5 mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card border-2 shadow-sm rounded">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6" style="border-right: 2px solid #cacaca;">
+                                            <!-- Gambar -->
+                                            <img src="{{ asset('storage/posts/' . $post->image) }}"
+                                                class="w-100 rounded">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Data -->
+                                            <h7><strong>Name Asset:</strong> {{ $post->title }}</h7>
+                                            <hr>
+                                            <h7><strong>No. Asset:</strong> {{ $post->asset_number }}</h7>
+                                            <hr>
+                                            <h7><strong>Asset Type:</strong> {{ $post->item_type }}</h7>
+                                            <hr>
+                                            <h7><strong>Status:</strong> {{ $post->status }}</h7>
+                                            <hr>
+                                            <strong>Note:</strong>
+                                            <p class="mt-3">
+                                                {!! $post->content !!}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        @endforelse
-                    </tbody>
-                </table>
-                {{ $posts->links() }}
-                </table>
+                        </div>
+                    </div>
+                </div>
+
+
                 </p>
             </div>
         </div>
